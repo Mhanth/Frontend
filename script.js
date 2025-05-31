@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // 🔧 Call to Render backend
 async function generateAIContent(prompt) {
   try {
-    const res = await fetch('https://aibizkit-backend.onrender.com', {  // 🔁 Replace with your actual URL
+    const res = await fetch('https://backend.onrender.com/generate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ prompt })
@@ -112,6 +112,7 @@ async function generateAIContent(prompt) {
     return "Unable to generate content.";
   }
 }
+
 
 // 🎨 Logo Generator
 function generateTextLogo(name, style) {
