@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AIBizKit – Instant Brand Starter</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <h1><span class="logo-red">Mr.</span><span class="logo-green">Mhanth</span></h1>
+    <h2>AIBizKit</h2>
+    <p>Instant Brand Starter Kit</p>
+    <button class="cta">Start Your Business With AI in Minutes — No Design Skills Needed</button>
+  </header>
+
+  <button class="theme-toggle" title="Toggle Light/Dark Theme">🌙 Toggle Theme</button>
+
+  <main class="container">
+    <section class="form-section">
+      <h3>Business Info</h3>
+      <form id="BizKitForm">
+        <input type="text" placeholder="Business Name" />
+        <input type="text" placeholder="Industry" />
+        <select>
+          <option>Clean & Modern</option>
+          <option>Bold & Playful</option>
+          <option>Classic & Elegant</option>
+        </select>
+        <div class="checkbox-group">
+          <label><input type="checkbox" /> Logo</label>
+          <label><input type="checkbox" /> Website</label>
+          <label><input type="checkbox" /> Social Media Kit</label>
+          <label><input type="checkbox" /> SEO + Blog</label>
+        </div>
+        <button type="submit" class="generate-btn">Generate Kit</button>
+      </form>
+    </section>
+
+    <section class="result-section" id="result">
+      <h3>Your AI BIZKit Is Ready!</h3>
+      <div class="result-grid">
+        <div class="card logo-concept">
+          <h4>Logo Concept</h4>
+          <div id="logo-container"></div>
+          <button onclick="downloadLogo()" class="generate-btn">Download Logo</button>
+        </div>
+
+        <div class="card tagline"><h4>Tagline</h4></div>
+
+        <div class="card landing-page">
+          <h4>Landing Page Preview</h4>
+          <p><span></span></p>
+          <button>Edit All</button>
+        </div>
+
+        <div class="card seo"><h4>SEO Keywords</h4></div>
+
+        <div class="card color">
+          <h4>Suggested Colors</h4>
+          <div style="background-color: #443404; height: 30px;"></div>
+          <div style="background-color: #ffffff; height: 30px;"></div>
+          <div style="background-color: #888899; height: 30px;"></div>
+        </div>
+
+        <div class="card blog"><h4>Blog Post:</h4></div>
+      </div>
+    </section>
+
+    <button id="download-pdf" class="generate-btn">📄 Download Your Brand Kit</button>
+  </main>
+
+  <!-- PDF Content (hidden) -->
+  <div id="pdf-content" style="display: none;">
+    <h2>AIBizKit – Brand Kit Summary</h2>
+    <p><strong>Business Name:</strong> <span id="pdf-bizname"></span></p>
+    <p><strong>Industry:</strong> <span id="pdf-industry"></span></p>
+    <p><strong>Style:</strong> <span id="pdf-style"></span></p>
+    <p><strong>Selected Features:</strong> <span id="pdf-features"></span></p>
+    <p><strong>Tagline:</strong> <span id="pdf-tagline"></span></p>
+    <p><strong>SEO Keywords:</strong> <span id="pdf-seo"></span></p>
+    <p><strong>Blog Intro:</strong></p>
+    <p id="pdf-blog"></p>
+  </div>
+
+  <script type="module" src="firebase.js"></script>
+  <script type="module" src="script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</body>
+</html>
