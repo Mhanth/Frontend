@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // 🔧 Call to Render backend
 async function generateAIContent(prompt) {
   try {
-    const res = await fetch('https://your-api.onrender.com/generate', {  // 🔁 Replace with your actual URL
+    const res = await fetch('https://aibizkit-backend.onrender.com', {  // 🔁 Replace with your actual URL
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ prompt })
