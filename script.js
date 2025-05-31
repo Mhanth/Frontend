@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       try {
-        // AI Content Prompts
+        // AI Prompts
         const taglinePrompt = `Create a catchy tagline for a business named "${businessName}" in the "${industry}" industry.`;
         const blogPrompt = `Write a short 100-word intro blog post for a company named "${businessName}" in the "${industry}" niche.`;
         const seoPrompt = `Generate 5 SEO keywords for a business called "${businessName}" in the "${industry}" niche. Return keywords only.`;
@@ -30,15 +30,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const blogPost = await generateAIContent(blogPrompt);
         const seoKeywords = await generateAIContent(seoPrompt);
 
-        // Show in UI
         document.querySelector('.tagline').textContent = tagline;
         document.querySelector('.blog').textContent = blogPost;
         document.querySelector('.seo').textContent = seoKeywords;
 
-        // Generate logo
         generateTextLogo(businessName, style);
 
-        // Save to Firebase
         await addDoc(collection(db, 'bizkits'), {
           businessName,
           industry,
@@ -59,14 +56,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 🌗 Theme Toggle
   if (themeToggle) {
     themeToggle.addEventListener('click', () => {
       document.body.classList.toggle('dark');
     });
   }
 
-  // 📄 Download Brand Kit PDF
   if (downloadBtn) {
     downloadBtn.addEventListener('click', () => {
       const businessName = form[0].value;
@@ -101,26 +96,30 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// 🔧 AI Content Generator (via Vercel proxy)
+// 🔧 Call to Render backend
 async function generateAIContent(prompt) {
-  const res = await fetch('/api/generate', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ prompt })
-  });
+  try {
+    const res = await fetch('https://your-api.onrender.com/generate', {  // 🔁 Replace with your actual URL
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt })
+    });
 
-  const data = await res.json();
-  return data.message;
+    const data = await res.json();
+    return data.message;
+  } catch (e) {
+    console.error("⚠️ AI Content Generation Failed:", e);
+    return "Unable to generate content.";
+  }
 }
 
-// 🎨 SVG Logo Generator
+// 🎨 Logo Generator
 function generateTextLogo(name, style) {
   const logoStyles = {
     'Clean & Modern': 'sans-serif',
     'Bold & Playful': 'Comic Sans MS, cursive',
     'Classic & Elegant': 'Georgia, serif'
   };
-
   const fontFamily = logoStyles[style] || 'sans-serif';
   const svg = `
     <svg width="300" height="100" xmlns="http://www.w3.org/2000/svg">
@@ -128,18 +127,16 @@ function generateTextLogo(name, style) {
       <text x="10" y="60" font-size="32" font-family="${fontFamily}" fill="#f24e1e">${name}</text>
     </svg>
   `;
-
   document.getElementById('logo-container').innerHTML = svg;
 }
 
-// ⬇️ Logo Download
+// ⬇️ Download logo
 function downloadLogo() {
   const svgElement = document.querySelector('#logo-container svg');
   if (!svgElement) return;
 
   const blob = new Blob([svgElement.outerHTML], { type: 'image/svg+xml' });
   const url = URL.createObjectURL(blob);
-
   const a = document.createElement('a');
   a.href = url;
   a.download = 'AIBizKit_Logo.svg';

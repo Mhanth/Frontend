@@ -1,3 +1,4 @@
+<!-- Save as frontend/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,9 +21,10 @@
     <section class="form-section">
       <h3>Business Info</h3>
       <form id="BizKitForm">
-        <input type="text" placeholder="Business Name" />
-        <input type="text" placeholder="Industry" />
-        <select>
+        <input type="text" placeholder="Business Name" required />
+        <input type="text" placeholder="Industry" required />
+        <select required>
+          <option selected disabled>Select a Style</option>
           <option>Clean & Modern</option>
           <option>Bold & Playful</option>
           <option>Classic & Elegant</option>
@@ -43,26 +45,22 @@
         <div class="card logo-concept">
           <h4>Logo Concept</h4>
           <div id="logo-container"></div>
-          <button onclick="downloadLogo()" class="generate-btn">Download Logo</button>
+          <button id="download-logo" class="generate-btn">Download Logo</button>
         </div>
 
         <div class="card tagline"><h4>Tagline</h4></div>
-
         <div class="card landing-page">
           <h4>Landing Page Preview</h4>
           <p><span></span></p>
           <button>Edit All</button>
         </div>
-
         <div class="card seo"><h4>SEO Keywords</h4></div>
-
         <div class="card color">
           <h4>Suggested Colors</h4>
           <div style="background-color: #443404; height: 30px;"></div>
           <div style="background-color: #ffffff; height: 30px;"></div>
           <div style="background-color: #888899; height: 30px;"></div>
         </div>
-
         <div class="card blog"><h4>Blog Post:</h4></div>
       </div>
     </section>
@@ -70,7 +68,7 @@
     <button id="download-pdf" class="generate-btn">📄 Download Your Brand Kit</button>
   </main>
 
-  <!-- PDF Content (hidden) -->
+  <!-- PDF Content -->
   <div id="pdf-content" style="display: none;">
     <h2>AIBizKit – Brand Kit Summary</h2>
     <p><strong>Business Name:</strong> <span id="pdf-bizname"></span></p>
